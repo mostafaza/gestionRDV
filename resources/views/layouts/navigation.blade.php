@@ -20,12 +20,20 @@
                 @if (Auth::user()->hasRole('user'))
                 <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
                     <x-nav-link :href="route('dashboard.monprofil')" :active="request()->routeIs('dashboard.monprofil')">
-                        {{ __('Mon Profil') }}
+                        {{ __('Mes demandes de rendez-vous') }}
                     </x-nav-link>
                 </div>
                 <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
                     <x-nav-link :href="route('consultation.create')" :active="request()->routeIs('consultation.create')">
-                        {{ __('Prendre un RDV') }}
+                        {{ __('Prendre un rendez-vous') }}
+                    </x-nav-link>
+                </div>
+                @endif
+
+                @if (Auth::user()->hasRole('medecin'))
+                <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
+                    <x-nav-link :href="route('doctor.index')" :active="request()->routeIs('doctor.index')">
+                        {{ __('Voir les demandes rendez-vous') }}
                     </x-nav-link>
                 </div>
                 @endif

@@ -54,9 +54,16 @@
                   </span>
                 </td>
 
+                <td class="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
+                  <form action="{{ route('doctor.update', $consultation->id) }}" method="post">
+                    @csrf
+                    @method('PUT')
+                    <button class="btn btn-danger" type="submit">Confirmer</button>
+                  </form>
+                </td>
 
                 <td class="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
-                  <form action="{{ route('consultation.destroy', $consultation->id) }}" method="post">
+                  <form action="{{ route('doctor.destroy', $consultation->id) }}" method="post">
                     @csrf
                     @method('DELETE')
                     <button class="btn btn-danger" type="submit">Annuler</button>
