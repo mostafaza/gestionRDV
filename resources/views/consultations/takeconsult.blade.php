@@ -27,7 +27,7 @@
 
             <!-- Select Option Rol type -->
             <div class="mt-4">
-                    <x-label for="medecin_id" value="{{ __('Creer un') }}" />
+                    <x-label for="medecin_id" value="{{ __('Quel medecin') }}" />
                     <select name="medecin_id" class="block mt-1 w-full border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 rounded-md shadow-sm">
                     @foreach($users as $user)
                         <option value="{{$user->id}}">{{$user->name}}</option>
