@@ -18,6 +18,7 @@ class Consultation extends Model
         'motif',
         'confirmation',
         'user_id',
+        'medecin_id'
     ];
 
    

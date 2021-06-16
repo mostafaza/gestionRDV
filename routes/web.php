@@ -2,6 +2,8 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\DashboardController;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -25,9 +27,12 @@ Route::group(['middleware' => ['auth']], function() {
 // for users
 Route::group(['middleware' => ['auth', 'role:user']], function() { 
     Route::get('/dashboard/monprofil', 'App\Http\Controllers\DashboardController@monprofil')->name('dashboard.monprofil');
+    //Route::get('/consultation/takeconsult', 'App\Http\Controllers\Api\DashboardController@create')->name('consultation.takeconsult');
+    Route::resource('consultation', DashboardController::class);
+
 });
 
-// for users
+// for admin
 Route::group(['middleware' => ['auth', 'role:admin']], function() { 
     Route::resource('user', UserController::class);
 });

@@ -26,4 +26,33 @@ class DashboardController extends Controller
         $consultations = Consultation::where('user_id',$userId)->get();
         return view('monprofil',compact('consultations'));
     }
+
+    public function create()
+    {
+        $users =  User::whereRoleIs('medecin')->get();
+        return view('consultations.takeconsult',compact('users'));
+    }
+
+    public function store(Request $request)
+    {
+        $request->validate([
+            'motif'        => 'required|string|max:255',
+            'confirmation' => 'boolean',
+            'user_id'      => 'int',
+            'medecin_id'   => 'int',
+        ]);
+        $userId = Auth::id();
+
+        $consultation = Consultation::create([
+            'motif'        => $request->motif,
+            'confirmation' => 0,
+            'user_id'      => $userId,
+            'medecin_id'   => $request->medecin_id,
+            
+        ]);
+       
+        return redirect()
+            ->back()
+            ->with('sucess', 'User updated successfully');
+    }
 }

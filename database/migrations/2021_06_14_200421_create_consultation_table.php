@@ -18,6 +18,7 @@ class CreateConsultationTable extends Migration
             $table->string('motif');
             $table->boolean('confirmation');
             $table->bigInteger('user_id')->unsigned();
+            $table->bigInteger('medecin_id')->unsigned();
             $table->timestamps();
         });
 
