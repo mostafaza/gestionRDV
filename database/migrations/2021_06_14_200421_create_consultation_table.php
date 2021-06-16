@@ -13,12 +13,17 @@ class CreateConsultationTable extends Migration
      */
     public function up()
     {
-        Schema::create('consultation', function (Blueprint $table) {
+        Schema::create('consultations', function (Blueprint $table) {
             $table->id();
             $table->string('motif');
             $table->boolean('confirmation');
-            $table->foreignId('user_id')->constrained();
+            $table->bigInteger('user_id')->unsigned();
             $table->timestamps();
+        });
+
+        
+        Schema::table('consultations', function($table) {
+            $table->foreign('user_id')->references('id')->on('users');
         });
     }
 

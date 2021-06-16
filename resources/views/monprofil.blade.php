@@ -1,7 +1,7 @@
 <x-app-layout>
     <x-slot name="header">
         <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-            {{ __('page utilisateur') }}
+            {{ __('Mes consultations') }}
         </h2>
     </x-slot>
 
@@ -9,7 +9,16 @@
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
             <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
                 <div class="p-6 bg-white border-b border-gray-200">
-                    yay {{Auth::user()->name}}
+                @foreach($consultations as $consultation)
+
+                <h3>{{ $consultation->motif }}</h3>
+                            
+                    <ul>
+                        @foreach($consultation->user as $user)
+                        <li> {{ !empty($user->name) }}</li>
+                        @endforeach
+                    </ul> 
+                @endforeach
                 </div>
             </div>
         </div>

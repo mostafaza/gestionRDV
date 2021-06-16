@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\User;
+use App\Models\Consultation;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -20,6 +22,8 @@ class DashboardController extends Controller
     }
 
     public function monprofil(){
-        return view('monprofil');
+        $userId = Auth::id();
+        $consultations = Consultation::where('user_id',$userId)->get();
+        return view('monprofil',compact('consultations'));
     }
 }
