@@ -8,73 +8,68 @@
   <div class="py-12">
     <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
       <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
-        <div class="p-6 bg-white border-b border-gray-200">
-          <table class="min-w-full divide-y divide-gray-200">
-            <thead class="bg-gray-50">
-              <tr>
-                <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                  Id
-                </th>
-                <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                  Name
-                </th>
-                <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                  email
-                </th>
-                <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                  Créé le :
-                </th>
-                <th scope="col" class="relative px-6 py-3">
-                  <span class="sr-only">Edit</span>
-                </th>
-              </tr>
-            </thead>
-            <tbody class="bg-white divide-y divide-gray-200">
-              @foreach ($users as $user)
-              <tr>
-                <td class="px-6 py-4 whitespace-nowrap">
-                  <div class="flex items-center">
-                    <div class="text-sm font-medium text-gray-900">
-                      {{$user->id}}
-                    </div>
-                  </div>
-                </td>
+        <table class="min-w-max w-full table-auto">
+          <thead>
+            <tr class="bg-gray-200 text-gray-600 uppercase text-sm leading-normal">
+              <th class="py-3 px-6 text-left">id</th>
+              <th class="py-3 px-6 text-left">name</th>
+              <th class="py-3 px-6 text-center">email</th>
+              <th class="py-3 px-6 text-center">date création</th>
+              <th class="py-3 px-6 text-center">role</th>
+              <th class="py-3 px-6 text-center">Actions</th>
+            </tr>
+          </thead>
+          @foreach ($users as $user)
+          <tbody class="text-gray-600 text-sm font-light">
+            <tr class="border-b border-gray-200 hover:bg-gray-100">
 
-                <td class="px-6 py-4 whitespace-nowrap">
-                  <div class="text-sm text-gray-900">{{$user->name}}</div>
-                </td>
+              <td class="py-3 px-6 text-left">
+                <div class="flex items-center">
+                  <span class="font-medium">{{$user->id}}</span>
+                </div>
+              </td>
+              <td class="py-3 px-6 text-left">
+                <div class="flex items-center">
+                  <span class="font-medium">{{$user->name}}</span>
+                </div>
+              </td>
+              <td class="py-3 px-6 text-left">
+                <div class="flex items-center">
+                  <span class="font-medium">{{$user->email}}</span>
+                </div>
+              </td>
+              <td class="py-3 px-6 text-left">
+                <div class="flex items-center">
+                  <span class="font-medium">{{$user->created_at}}</span>
+                </div>
+              </td>
+              <td class="py-3 px-6 text-center">
+                @foreach ($user->roles as $role)
+                <span class="bg-purple-200 text-purple-600 py-1 px-3 rounded-full text-xs">{{$role->name}}</span>
+                @endforeach
+              </td>
 
-                <td class="px-6 py-4 whitespace-nowrap">
-                  <!-- <span class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-green-100 text-green-800">
-                  Active
-                </span> -->
-                  {{$user->email}}
-                </td>
-
-                <td class="px-6 py-4 whitespace-nowrap">
-                  <span class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-green-100 text-green-800">
-                    {{$user->created_at}}
-                  </span>
-                </td>
-
-                <td class="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
-                  <a href="{{ route('user.edit', $user->id)}}" class="text-indigo-600 hover:text-indigo-900">Edit</a>
-                </td>
-
-                <td class="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
+              <td class="py-3 px-6 text-center">
+                <div class="flex item-center justify-center space-x-4">
+                  <a href="{{ route('user.edit', $user->id)}}"
+                    class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-full">
+                    Edit
+                  </a>
                   <form action="{{ route('user.destroy', $user->id) }}" method="post">
                     @csrf
                     @method('DELETE')
-                    <button class="btn btn-danger" type="submit">Supprimer</button>
+                    <button class="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded-full"" type="submit">Supprimer
+                    </button>
                   </form>
-                </td>
-              </tr>
+                </div>
+              </td>
+            </tr>
+          </tbody>
+          @endforeach
+        </table>
 
-              @endforeach
-            </tbody>
-          </table>
-        </div>
       </div>
     </div>
+  </div>
   </div>
 </x-app-layout>
